@@ -17,6 +17,7 @@
   import addMarkerImage from '$lib/assets/add-marker.png';
   import { activeMarkerCoords } from '../stores';
   import type { FeatureCollection, Point, GeoJsonProperties } from 'geojson';
+  import { fetchIdCoords } from '$lib/scripts/fetchData';
 
   let map: MapType;
   let mapContainer: HTMLDivElement;
@@ -105,10 +106,15 @@
     map.keyboard.enable();
 
     map.on('load', async () => {
-      map.addSource(markerId, {
-        type: 'geojson',
-        data: 'data/moments.json'
-      });
+      
+      const geoJSONData = await fetchIdCoords();
+      
+      if (geoJSONData) {
+        map.addSource(markerId, {
+          type: 'geojson',
+          data: geoJSONData
+        });
+      }
 
       try {
         await loadImageAndAddToMap(map, markerImage, 'marker');

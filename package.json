@@ -2,6 +2,12 @@
   "name": "queering-the-map",
   "version": "0.0.1",
   "private": true,
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
   "scripts": {
     "dev": "vite dev --port 5173",
     "build": "npm run fetch-data && vite build",

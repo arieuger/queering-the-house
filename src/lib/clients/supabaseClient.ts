@@ -3,12 +3,12 @@ import type { Database } from './database.types';
 import { config } from 'dotenv';
 
 // Load environment variables from .env file when not running in Vite
-if (!process.env.VITE_SUPABASE_URL) {
+if (!import.meta.env.VITE_SUPABASE_URL) {
   config();
 }
 
-const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-const key = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+const url = import.meta.env.VITE_SUPABASE_URL || import.meta.env.SUPABASE_URL;
+const key = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.SUPABASE_ANON_KEY;
 
 class DBAuthError extends Error {
   constructor(message: string) {
