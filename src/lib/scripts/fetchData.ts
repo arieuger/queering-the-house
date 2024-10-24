@@ -120,8 +120,3 @@ export async function fetchAndWriteData() {
     `Fetched ${Object.keys(descriptions).length} descriptions and saved to ${descriptionsFilePath}`
   );
 }
-
-fetchAndWriteData().catch((err) => {
-  console.error('Error in fetchAndWriteData:', err);
-  process.exit(1);
-});

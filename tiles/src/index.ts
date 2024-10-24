@@ -8,6 +8,7 @@ import {
   TileType
 } from 'pmtiles';
 import { pmtiles_path, tileJSON, tile_path } from './shared';
+import { Metadata } from '@playwright/test';
 
 interface Env {
   ALLOWED_ORIGINS?: string;
@@ -102,6 +103,7 @@ export default {
     const url = new URL(request.url);
     const { ok, name, tile, ext } = tile_path(url.pathname);
 
+    // @ts-ignore
     const cache = caches.default;
 
     if (!ok) {
@@ -167,7 +169,7 @@ export default {
 
         const t = tileJSON(
           pHeader,
-          await p.getMetadata(),
+          await p.getMetadata() as Metadata,
           env.PUBLIC_HOSTNAME || url.hostname,
           name
         );

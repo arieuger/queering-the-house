@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite dev --port 5173",
-    "build": "npm run fetch-data && vite build",
+    "build": "npm run vite build",
     "preview": "vite preview",
     "test": "npm run test:integration && npm run test:unit",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -19,8 +19,6 @@
     "format": "prettier --write .",
     "test:integration": "playwright test",
     "test:unit": "vitest",
-    "fetch-data": "npx vite-node --options.transformMode.ssr='/.*/' src/lib/scripts/fetchData.ts",
-    "seed-data": "npx vite-node --options.transformMode.ssr='/.*/' src/lib/scripts/seedData.ts",
     "prepare": "husky"
   },
   "devDependencies": {
