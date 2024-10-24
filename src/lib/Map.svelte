@@ -17,7 +17,7 @@
   import addMarkerImage from '$lib/assets/add-marker.png';
   import { activeMarkerCoords } from '../stores';
   import type { FeatureCollection, Point, GeoJsonProperties } from 'geojson';
-  import { fetchIdCoords } from '$lib/scripts/fetchData';
+  import { fetchIdCoords } from '../services/map.service';
 
   let map: MapType;
   let mapContainer: HTMLDivElement;

@@ -1,8 +1,9 @@
-import { supabase } from '../clients/supabaseClient';
+import { supabase } from '$lib/clients/supabaseClient';
 import fs from 'fs';
 import path from 'path';
 import type { FeatureCollection, GeoJsonProperties, Point } from 'geojson';
 import { roundCoordinates } from '$lib/utils/utils';
+import type { Database } from '$lib/clients/database.types';
 
 type Moment = {
   short_id: number;
@@ -67,6 +68,25 @@ export async function fetchIdDescriptions(): Promise<Record<
   return descriptions;
 }
 
+export async function getDescriptionById(shortId: string): Promise<{ short_id: number; description: string | null } | null> {
+  const { data, error } = await supabase
+    .from('moments')
+    .select('short_id, description')
+    .eq('short_id', shortId);
+
+  if (error) {
+    console.error('Error description by id:', error);
+    return null;
+  }
+  
+  return data ? data[0] : null;
+}
+
+
+
+
+
+// Escritura a JSON
 export async function writeGeoJsonToFile(
   geoJson: FeatureCollection<Point, GeoJsonProperties>
 ): Promise<string> {
