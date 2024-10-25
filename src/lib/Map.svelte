@@ -17,7 +17,6 @@
   import addMarkerImage from '$lib/assets/add-marker.png';
   import { activeMarkerCoords } from '../stores';
   import type { FeatureCollection, Point, GeoJsonProperties } from 'geojson';
-  import { fetchIdCoords } from '../services/map.service';
 
   let map: MapType;
   let mapContainer: HTMLDivElement;
@@ -107,7 +106,8 @@
 
     map.on('load', async () => {
       
-      const geoJSONData = await fetchIdCoords();
+      const response = await fetch(`/moments`);
+      const geoJSONData = await response.json();
       
       if (geoJSONData) {
         map.addSource(markerId, {

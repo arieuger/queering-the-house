@@ -1,5 +1,5 @@
 import { json, error } from '@sveltejs/kit';
-import { getDescriptionById } from '../../../services/map.service';
+import { getDescriptionById } from '$lib/services/map.service';
 
 export async function GET({ params }) {
   const { id } = params;

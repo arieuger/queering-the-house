@@ -2,6 +2,12 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { supabase } from '$lib/clients/supabaseClient';
 import { CLOUDFLARE_TURNSTILE_SECRET } from '$env/static/private';
+import { fetchIdCoords } from '$lib/services/map.service';
+
+export const GET: RequestHandler = async () => {
+  const geoJSONData = await fetchIdCoords();
+  return json(geoJSONData);
+}
 
 export const POST: RequestHandler = async ({ request }) => {
   const { lng, lat, description, captchaToken } = await request.json();
