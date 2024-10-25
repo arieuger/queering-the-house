@@ -41,6 +41,7 @@ export const POST: RequestHandler = async ({ request }) => {
     return json({ error: 'CAPTCHA verification failed.' }, { status: 400 });
   }
 
+  // TODO: Mover a capa de servicio 
   const { error } = await supabase.from('moments').insert([
     {
       description,

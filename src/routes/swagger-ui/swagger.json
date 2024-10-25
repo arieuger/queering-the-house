@@ -1,0 +1,93 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Queering the Houses",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/moments": {
+      "get": {
+        "summary": "Obtén listado de todas as ubicacións con \"short_id\" e coordenadas",
+        "responses": {
+          "200": {
+            "description": "Resposta correcta",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "features" : {
+                  "type" : "array",
+                  "items": {
+                    "type" : "object",
+                    "properties" : {
+                      "type": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "number"
+                      },
+                      "geometry" : {
+                        "type" : "object",
+                        "properties" : {
+                          "type" : {
+                            "type": "string"
+                          },
+                          "coordinates": {
+                            "type" : "array",
+                            "items": {
+                              "type" : "number"
+                            }
+                          },
+                          "properties": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/moment/{momentId}": {
+      "get": {
+        "summary": "Obtén a descripción de unha ubicación según o seu \"short_id\"",
+        "parameters": [ {
+          "name": "momentId",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          },
+          "in": "path"
+        }],
+        "responses": {
+          "200": {
+            "description": "Resposta correcta",
+            "schema": {
+              "type" : "object",
+              "properties": {
+                "short_id": {
+                  "type": "integer"
+                },
+                "description" : {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro na búsqueda"
+          },
+          "404": {
+            "description": "Descrición non atopada"
+          }
+        }
+      }
+    }
+  }
+}
