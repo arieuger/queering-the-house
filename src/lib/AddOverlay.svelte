@@ -112,16 +112,16 @@
   <div class="overlay__outer">
     <div class="overlay__content">
       <section>
-        <div class="overlay__section-title">Add Your Story</div>
+        <div class="overlay__section-title">Engade unha vivenda</div>
         <div class="overlay__section-text">
           <div class="partial_div-numbered">
-            <span>1</span>Click the location of your story on the map.
+            <span>1</span>Fai click na localización da vivenda no mapa.
           </div>
           <div class="partial_div-numbered">
-            <span>2</span>Share your story in the the text box below.
+            <span>2</span>Cubre o cadro de texto coa dirección, e o resto da información ca que contes
           </div>
           <div class="partial_div-numbered">
-            <span>3</span>Click the Add button.
+            <span>3</span>Presiona no botón "Engadir".
           </div>
           <form>
             <textarea
@@ -173,24 +173,24 @@
 							apply.
 						</div> -->
 
-            <div class="recaptcha-text">
-              By submitting I agree to the <a
-                href="/"
-                on:click|preventDefault={() => openInfoOverlay(6)}
-                target="_blank"
-                rel="noopener">Terms of Use</a
-              >
-              and
-              <a
-                href="/"
-                on:click|preventDefault={() => openInfoOverlay(7)}
-                target="_blank"
-                rel="noopener">Privacy Policy</a
-              >.
-            </div>
+<!--            <div class="recaptcha-text">-->
+<!--              By submitting I agree to the <a-->
+<!--                href="/"-->
+<!--                on:click|preventDefault={() => openInfoOverlay(6)}-->
+<!--                target="_blank"-->
+<!--                rel="noopener">Terms of Use</a-->
+<!--              >-->
+<!--              and-->
+<!--              <a-->
+<!--                href="/"-->
+<!--                on:click|preventDefault={() => openInfoOverlay(7)}-->
+<!--                target="_blank"-->
+<!--                rel="noopener">Privacy Policy</a-->
+<!--              >.-->
+<!--            </div>-->
             <ActionButton
               functionOnClick={() => (requestCaptcha = true)}
-              isDisabled={isAddButtonDisabled}>Add</ActionButton
+              isDisabled={isAddButtonDisabled}>Engadir</ActionButton
             >
           </form>
         </div>
