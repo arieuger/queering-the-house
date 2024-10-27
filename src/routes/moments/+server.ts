@@ -46,7 +46,10 @@ export const POST: RequestHandler = async ({ request }) => {
     {
       description,
       location: `SRID=4326;POINT(${lng} ${lat})`,
-      status: 'pending'
+      status: 'pending',
+      sources: '',
+      address: '',
+      license: ''
     }
   ]);
 

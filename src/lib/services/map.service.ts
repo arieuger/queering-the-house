@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import type { FeatureCollection, GeoJsonProperties, Point } from 'geojson';
 import { roundCoordinates } from '$lib/utils/utils';
-import type { Database } from '$lib/clients/database.types';
 
 type Moment = {
   short_id: number;
@@ -11,6 +10,14 @@ type Moment = {
     coordinates: [number, number];
   };
   description: string;
+};
+
+type MomentInfo = {
+  short_id: number;
+  description: string;
+  license: string;
+  address: string;
+  sources: string;
 };
 
 export async function fetchIdCoords(): Promise<FeatureCollection<
@@ -68,23 +75,31 @@ export async function fetchIdDescriptions(): Promise<Record<
   return descriptions;
 }
 
-export async function getDescriptionById(shortId: string): Promise<{ short_id: number; description: string | null } | null> {
+export async function getMomentInfoById(
+  shortId: string
+): Promise<MomentInfo | null> {
   const { data, error } = await supabase
     .from('moments')
-    .select('short_id, description')
+    .select('short_id, description, license, address, sources')
     .eq('short_id', shortId);
 
   if (error) {
     console.error('Error description by id:', error);
     return null;
   }
-  
-  return data ? data[0] : null;
+
+  if (data) {
+    return {
+      short_id: data[0].short_id,
+      description: data[0].description !== null ? <string>data[0].description : '',
+      license: data[0].license !== null ? <string>data[0].license : '',
+      address: data[0].address !== null ? <string>data[0].address : '',
+      sources: data[0].sources !== null ? <string>data[0].sources : '',
+    };
+  }
+
+  return null;
 }
-
-
-
-
 
 // Escritura a JSON
 export async function writeGeoJsonToFile(

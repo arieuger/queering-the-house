@@ -1,22 +1,23 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import maplibregl, {
-    type Map as MapType,
-    type LngLatLike,
     type GeoJSONSource,
-    type StyleSpecification,
+    type LngLatLike,
+    type Map as MapType,
+    type MapGeoJSONFeature,
     type MapMouseEvent,
-    type MapGeoJSONFeature
+    type StyleSpecification
   } from 'maplibre-gl';
-  const { Map, NavigationControl, Popup, GeolocateControl } = maplibregl;
   import 'maplibre-gl/dist/maplibre-gl.css';
   import markerImage from '$lib/assets/marker.png';
   import markerHoveredImage from '$lib/assets/marker-hovered.png';
   import styleJson from '$lib/data/pmtiles/style.json';
-  const style = styleJson as StyleSpecification;
   import addMarkerImage from '$lib/assets/add-marker.png';
   import { activeMarkerCoords } from '../stores';
-  import type { FeatureCollection, Point, GeoJsonProperties } from 'geojson';
+  import type { FeatureCollection, GeoJsonProperties, Point } from 'geojson';
+
+  const { Map, NavigationControl, Popup, GeolocateControl } = maplibregl;
+  const style = styleJson as StyleSpecification;
 
   let map: MapType;
   let mapContainer: HTMLDivElement;
@@ -40,7 +41,7 @@
     try {
       const response = await fetch(`/moment/${id}`);
       const moment = await response.json();
-      return moment.description;
+      return moment;
     } catch (error) {
       console.error('Error fetching moment:', error);
       return '';
@@ -161,8 +162,7 @@
           }
 
           getMoment(feature.id)
-            .then((text) => {
-              const description = text;
+            .then((momentInfo) => {
               if (coordinates.length === 2) {
                 new Popup({
                   offset: [0, -markerHeight],
@@ -170,7 +170,11 @@
                   maxWidth: 'none'
                 })
                   .setLngLat(coordinates as LngLatLike)
-                  .setHTML(description)
+                  .setHTML(
+                    '<b>Dirección:</b> ' + momentInfo.address + '<br>' +
+                    '<b>Observacións:</b> ' + momentInfo.description + '<br>' +
+                    '<b>Licencia:</b> ' + momentInfo.license + '<br>' +
+                    '<b>Fonte/s:</b> ' + momentInfo.sources)
                   .addTo(map);
               } else {
                 console.error('Invalid coordinates format');

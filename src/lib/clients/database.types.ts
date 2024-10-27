@@ -61,6 +61,9 @@ export type Database = {
           location: unknown | null;
           short_id: number;
           status: string | null;
+          license: string | null;
+          address: string | null;
+          sources: string | null;
         };
         Insert: {
           created_at?: string;
@@ -70,6 +73,9 @@ export type Database = {
           location?: unknown | null;
           short_id?: number;
           status?: string | null;
+          license: string | null;
+          address: string | null;
+          sources: string | null;
         };
         Update: {
           created_at?: string;
@@ -79,6 +85,9 @@ export type Database = {
           location?: unknown | null;
           short_id?: number;
           status?: string | null;
+          license: string | null;
+          address: string | null;
+          sources: string | null;
         };
         Relationships: [];
       };

@@ -1,19 +1,25 @@
 import { json, error } from '@sveltejs/kit';
-import { getDescriptionById } from '$lib/services/map.service';
+import { getMomentInfoById } from '$lib/services/map.service';
 
 export async function GET({ params }) {
   const { id } = params;
 
   try {
     
-    const descById = await getDescriptionById(id);
-    const description = descById?.description;
+    const momentById = await getMomentInfoById(id);
 
-    if (!description) {
+    if (momentById === null) {
       throw error(404, 'Description not found');
     }
 
-    return json({ short_id: id, description });
+    return json({ 
+      short_id: id, 
+      description: momentById.description,
+      license: momentById.license,
+      address: momentById.address,
+      sources: momentById.sources,
+    });
+    
   } catch (err) {
     console.error('Error fetching moment text:', err);
     throw error(500, 'Error fetching moment text');
