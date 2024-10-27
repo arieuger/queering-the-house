@@ -270,7 +270,16 @@
   }
 
   @media (max-width: 800px) {
-    .overlay__section-title {
+    .overlay--add::-webkit-scrollbar {
+        display: none;
+    }
+
+    .overlay--add {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+      .overlay__section-title {
       padding-left: 1.05rem;
     }
 
@@ -288,11 +297,14 @@
     }
     .overlay__content {
       max-width: 100%;
+      max-height: 97vh;
+      overflow-y: auto;
+      height: unset;
     }
     .overlay--add textarea {
       padding: 10px;
       width: 99%;
-      height: 125px;
+      /*height: 125px;*/
       margin-top: 10px;
     }
     .overlay--add {
@@ -352,7 +364,7 @@
     padding-right: 0.4em;
     width: 100%;
     font-size: 12pt;
-    height: 4em;
+    height: 4rem;
     background-color: #f4b9d6;
     border: 1.01px solid var(--color-dark);
   }
@@ -366,7 +378,7 @@
       padding-right: 0.4em;
       width: 100%;
       font-size: 12pt;
-      height: 2.5em;
+      height: 2.5rem;
       background-color: #f4b9d6;
       border: 1.01px solid var(--color-dark);
   }
