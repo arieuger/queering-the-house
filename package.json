@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite dev --port 5173",
-    "build": "npm run vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "npm run test:integration && npm run test:unit",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -27,6 +27,8 @@
     "@sveltejs/adapter-auto": "^3.2.2",
     "@sveltejs/kit": "^2.5.18",
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
     "@types/geojson": "^7946.0.14",
     "@types/swagger-ui": "^3.52.4",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
@@ -52,7 +54,10 @@
   "dependencies": {
     "@fontsource/apfel-grotezk": "^5.0.11",
     "@supabase/supabase-js": "^2.44.4",
+    "@sveltejs/adapter-node": "^5.2.9",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "express": "^4.21.1",
     "maplibre-gl": "^4.5.0",
     "swagger-ui": "^5.17.14"
   },
