@@ -10,14 +10,14 @@ export const GET: RequestHandler = async () => {
 }
 
 export const POST: RequestHandler = async ({ request }) => {
-  const { lng, lat, description, captchaToken } = await request.json();
+  const { lng, lat, address, description, license, sources, captchaToken } = await request.json();
 
   if (!captchaToken) {
     return json({ error: 'CAPTCHA token is missing.' }, { status: 400 });
   }
 
-  if (!description?.trim()) {
-    return json({ error: 'Description cannot be empty.' }, { status: 400 });
+  if (!address?.trim()) {
+    return json({ error: 'A dirección non pode estar baleira.' }, { status: 400 });
   }
 
   const captchaVerifyUrl =
@@ -44,12 +44,12 @@ export const POST: RequestHandler = async ({ request }) => {
   // TODO: Mover a capa de servicio 
   const { error } = await supabase.from('moments').insert([
     {
-      description,
       location: `SRID=4326;POINT(${lng} ${lat})`,
       status: 'pending',
-      sources: '',
-      address: '',
-      license: ''
+      description: description?.length == 0 ? null : description,
+      sources: sources.length == 0 ? null : sources,
+      address: address.length == 0 ? null : address,
+      license: license.length == 0 ? null : license
     }
   ]);
 

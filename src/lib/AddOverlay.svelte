@@ -14,7 +14,10 @@
   import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
   import { SvelteToast, toast } from '@zerodevx/svelte-toast';
 
+  let momentAddress = '';
   let momentDescription = '';
+  let momentLicense = '';
+  let momentSources = '';
   let captchaToken = '';
   let isAddButtonDisabled = true;
   let requestCaptcha = false;
@@ -44,7 +47,7 @@
   $: isAddButtonDisabled =
     !$activeMarkerCoords?.lng ||
     !$activeMarkerCoords?.lat ||
-    !momentDescription;
+    !momentAddress;
 
   async function handleAddMoment() {
     if (!captchaToken) {
@@ -55,7 +58,10 @@
     const payload = JSON.stringify({
       lng: $activeMarkerCoords?.lng,
       lat: $activeMarkerCoords?.lat,
+      address: momentAddress,
       description: momentDescription,
+      license: momentLicense,
+      sources: momentSources,
       captchaToken
     });
 
@@ -119,9 +125,32 @@
           </div>
           <form>
             <textarea
+              bind:value={momentAddress}
+              placeholder="Dirección"
+              rows="1"
+              id="txt_address"
+              class="subform-sm"
+            ></textarea>
+            <textarea 
               bind:value={momentDescription}
-              id="txt_contents"
+              placeholder="Observacións"
+              rows="1"
+              id="txt_description"
               class="subform"
+            ></textarea>
+            <textarea
+              bind:value={momentLicense}
+              placeholder="Licencia"
+              rows="1"
+              id="txt_license"
+              class="subform-sm"
+            ></textarea>
+            <textarea
+              bind:value={momentSources}
+              placeholder="Fonte/s"
+              rows="1"
+              id="txt_sources"
+              class="subform-sm"
             ></textarea>
 
             {#if requestCaptcha}
@@ -323,9 +352,23 @@
     padding-right: 0.4em;
     width: 100%;
     font-size: 12pt;
-    height: 12em;
+    height: 4em;
     background-color: #f4b9d6;
     border: 1.01px solid var(--color-dark);
+  }
+
+  .subform-sm {
+      margin: auto;
+      text-align: left;
+      padding-left: 0;
+      padding-top: 0;
+      padding-bottom: 0.4em;
+      padding-right: 0.4em;
+      width: 100%;
+      font-size: 12pt;
+      height: 2.5em;
+      background-color: #f4b9d6;
+      border: 1.01px solid var(--color-dark);
   }
 
   textarea {
