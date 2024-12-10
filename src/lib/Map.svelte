@@ -121,44 +121,6 @@
         });
       }
 
-      // Capa para los clústeres
-      map.addLayer({
-        id: 'clusters',
-        type: 'circle',
-        source: 'moments',
-        filter: ['has', 'point_count'], // Solo clústeres
-        paint: {
-          'circle-color': [
-            'step',
-            ['get', 'point_count'],
-            '#51bbd6', // Color para baja densidad
-            10, '#f1f075', // Color para densidad media
-            50, '#f28cb1' // Color para alta densidad
-          ],
-          'circle-radius': [
-            'step',
-            ['get', 'point_count'],
-            15, // Radio para baja densidad
-            10, 20, // Radio para densidad media
-            50, 25 // Radio para alta densidad
-          ],
-          'circle-opacity': 0.6 // Semitransparente
-        }
-      });
-
-      // Capa para el número de puntos en cada clúster
-      map.addLayer({
-        id: 'cluster-count',
-        type: 'symbol',
-        source: 'moments',
-        filter: ['has', 'point_count'], // Solo clústeres
-        layout: {
-          'text-field': '{point_count_abbreviated}', // Número abreviado
-          'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
-          'text-size': 12
-        }
-      });
-
       try {
         await loadImageAndAddToMap(map, markerImage, 'marker');
         await loadImageAndAddToMap(map, markerHoveredImage, 'marker-hovered');
