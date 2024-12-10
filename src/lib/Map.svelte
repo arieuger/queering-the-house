@@ -12,9 +12,10 @@
   import markerImage from '$lib/assets/marker.png';
   import markerHoveredImage from '$lib/assets/marker-hovered.png';
   import styleJson from '$lib/data/pmtiles/style.json';
+  import corunaDistrictsImport from '$lib/data/coruna-distritos.json';
   import addMarkerImage from '$lib/assets/add-marker.png';
   import { activeMarkerCoords } from '../stores';
-  import type { FeatureCollection, GeoJsonProperties, Point } from 'geojson';
+  import type { FeatureCollection, GeoJsonProperties, Geometry, Point } from 'geojson';
 
   const { Map, NavigationControl, Popup, GeolocateControl } = maplibregl;
   const style = styleJson as StyleSpecification;
@@ -31,6 +32,8 @@
   const markerHoveredLayerId = 'moments-hovered-layer';
   const activeMarkerSourceId = 'active-marker-source';
   const activeMarkerLayerId = 'active-marker-layer';
+
+  const corunaDistricts: FeatureCollection<Geometry, GeoJsonProperties> = corunaDistrictsImport as FeatureCollection<Geometry, GeoJsonProperties>;
 
   const activeMarkerGeoJSON: FeatureCollection<Point, GeoJsonProperties> = {
     type: 'FeatureCollection',
@@ -92,6 +95,12 @@
       minZoom: 3,
       maxZoom: 18
     });
+
+    map.fitBounds([
+      [-8.543930, 43.300447],
+      [-8.347893,43.399186]
+    ]);
+
     map.addControl(
       new NavigationControl({ showCompass: false }),
       'bottom-right'
@@ -107,6 +116,22 @@
     map.keyboard.enable();
 
     map.on('load', async () => {
+
+      map.addSource('corunaAdminDivision', {
+        type: 'geojson',
+        data: corunaDistricts,
+      });
+
+      map.addLayer({
+        id: 'coruna-admin-layer',
+        type: 'line',
+        source: 'corunaAdminDivision',
+        paint: {
+          'line-color': '#dd4783',
+          'line-width': 2,
+          'line-opacity': 0.2
+        },
+      });
       
       const response = await fetch(`/moments`);
       const geoJSONData = await response.json();
