@@ -116,8 +116,8 @@
           type: 'geojson',
           data: geoJSONData,
           cluster: true, // Habilitar clustering
-          clusterMaxZoom: 14, // Nivel máximo de zoom para clustering
-          clusterRadius: 50 // Radio de clustering en píxeles
+          clusterMaxZoom: 16, // Nivel máximo de zoom para clustering
+          clusterRadius: 100 // Radio de clustering en píxeles
         });
       }
 
