@@ -78,6 +78,7 @@
         'icon-size': 0.45,
         'icon-anchor': 'bottom'
       },
+      filter: ['!', ['has', 'point_count']],
       paint: paint
     });
   }
@@ -113,9 +114,50 @@
       if (geoJSONData) {
         map.addSource(markerId, {
           type: 'geojson',
-          data: geoJSONData
+          data: geoJSONData,
+          cluster: true, // Habilitar clustering
+          clusterMaxZoom: 14, // Nivel máximo de zoom para clustering
+          clusterRadius: 50 // Radio de clustering en píxeles
         });
       }
+
+      // Capa para los clústeres
+      map.addLayer({
+        id: 'clusters',
+        type: 'circle',
+        source: 'moments',
+        filter: ['has', 'point_count'], // Solo clústeres
+        paint: {
+          'circle-color': [
+            'step',
+            ['get', 'point_count'],
+            '#51bbd6', // Color para baja densidad
+            10, '#f1f075', // Color para densidad media
+            50, '#f28cb1' // Color para alta densidad
+          ],
+          'circle-radius': [
+            'step',
+            ['get', 'point_count'],
+            15, // Radio para baja densidad
+            10, 20, // Radio para densidad media
+            50, 25 // Radio para alta densidad
+          ],
+          'circle-opacity': 0.6 // Semitransparente
+        }
+      });
+
+      // Capa para el número de puntos en cada clúster
+      map.addLayer({
+        id: 'cluster-count',
+        type: 'symbol',
+        source: 'moments',
+        filter: ['has', 'point_count'], // Solo clústeres
+        layout: {
+          'text-field': '{point_count_abbreviated}', // Número abreviado
+          'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+          'text-size': 12
+        }
+      });
 
       try {
         await loadImageAndAddToMap(map, markerImage, 'marker');
@@ -124,6 +166,46 @@
       } catch (error) {
         console.error('Error loading marker images:', error);
       }
+
+      // Capa para los clústeres
+      map.addLayer({
+        id: 'clusters',
+        type: 'circle',
+        source: 'moments',
+        filter: ['has', 'point_count'], // Solo clústeres
+        paint: {
+          'circle-color': [
+            'step',
+            ['get', 'point_count'],
+            '#51bbd6', // Color para baja densidad
+            10, '#f1f075', // Color para densidad media
+            50, '#f28cb1' // Color para alta densidad
+          ],
+          'circle-radius': [
+            'step',
+            ['get', 'point_count'],
+            15, // Radio para baja densidad
+            10, 20, // Radio para densidad media
+            50, 25 // Radio para alta densidad
+          ],
+          'circle-opacity': 0.6 // Semitransparente
+        }
+      });
+
+      // Capa para el número de puntos en cada clúster
+      map.addLayer({
+        id: 'cluster-count',
+        type: 'symbol',
+        source: 'moments',
+        filter: ['has', 'point_count'], // Solo clústeres
+        layout: {
+          'text-field': '{point_count_abbreviated}', // Número abreviado
+          'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+          'text-size': 12
+        }
+      });
+
+
 
       addPinLayer(map, markerLayerId, markerId, 'marker');
       addPinLayer(map, markerHoveredLayerId, markerId, 'marker-hovered', {
