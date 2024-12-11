@@ -365,7 +365,7 @@
     width: 100%;
     font-size: 12pt;
     height: 4rem;
-    background-color: #f4b9d6;
+    background-color: #c2ddcd;
     border: 1.01px solid var(--color-dark);
   }
 
@@ -379,7 +379,7 @@
       width: 100%;
       font-size: 12pt;
       height: 2.5rem;
-      background-color: #f4b9d6;
+      background-color: #c2ddcd;
       border: 1.01px solid var(--color-dark);
   }
 

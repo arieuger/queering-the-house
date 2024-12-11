@@ -165,7 +165,7 @@
             'step',
             ['get', 'point_count'],
             '#46dd64', // Color para baja densidad
-            10, '#f1bb75', // Color para densidad media
+            10, '#ea7e66', // Color para densidad media
             40, '#e33163' // Color para alta densidad
           ],
           'circle-radius': [

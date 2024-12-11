@@ -12,22 +12,22 @@
 </script>
 
 <svelte:head>
-  <title>QUEERING THE HOUSES</title>
+  <title>RENDISTMAP</title>
   <meta
     name="description"
-    content="Título provisional para unha app baseada en Queering the map para o mapeado das vivendas turísticas na cidade da Coruña."
+    content="Mapea os pisos turísticos da cidade da Coruña."
   />
 
   <meta property="og:type" content="website" />
 <!--  <meta property="og:url" content="https://www.queeringthemap.com/" />-->
-  <meta property="og:title" content="Queering The Houses" />
+  <meta property="og:title" content="RENDISTMAP" />
   <meta property="og:image" content={qtm_sharing_image} />
   <meta
     property="og:description"
-    content="Título provisional para unha app baseada en Queering the map para o mapeado das vivendas turísticas na cidade da Coruña."
+    content="Mapea os pisos turísticos da cidade da Coruña."
   />
   <meta property="og:site_name" content="Queering The Map" />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content="es_GL" />
   
   <!-- TODO -->
 <!--  <meta-->
@@ -36,10 +36,10 @@
 <!--  />-->
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Queering The Houses" />
+  <meta name="twitter:title" content="RENDISTMAP" />
   <meta
     name="twitter:description"
-    content="Título provisional para unha app baseada en Queering the map para o mapeado das vivendas turísticas na cidade da Coruña."
+    content="Mapea os pisos turísticos da cidade da Coruña."
   />
   <meta name="twitter:image" content={qtm_sharing_image} />
 </svelte:head>
