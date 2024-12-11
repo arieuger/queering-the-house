@@ -6,7 +6,7 @@ div.maplibregl-ctrl-group button {
   height: 45px;
   width: 45px;
   border-radius: 0px;
-  background-color: var(--color-pink);
+  background-color: var(--color-green);
   border: 1.01px solid var(--color-dark);
   color: var(--color-dark);
 }
@@ -28,7 +28,7 @@ body .maplibregl-ctrl-bottom-right .maplibregl-ctrl {
 /* For some reason the hover over the - icon changes the background, this forces
 the same background. */
 div.maplibregl-ctrl-group button:hover {
-  background-color: var(--color-pink) !important;
+  background-color: var(--color-green) !important;
 }
 
 /******************************************************************************/

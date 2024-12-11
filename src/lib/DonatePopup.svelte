@@ -48,7 +48,7 @@
     box-shadow:
       0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border: 1px solid var(--color-pink);
+    border: 1px solid var(--color-green);
     border-radius: 0.125rem;
     display: flex;
     align-items: center;
@@ -63,7 +63,7 @@
     flex: 1;
   }
   .toast-message a {
-    color: var(--color-pink);
+    color: var(--color-green);
     text-decoration: unset;
   }
   .toast-message a span {
@@ -75,7 +75,7 @@
     right: 4px;
     background: none;
     border: none;
-    color: var(--color-pink);
+    color: var(--color-green);
     cursor: pointer;
     font: 1rem sans-serif;
   }

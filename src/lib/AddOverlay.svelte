@@ -221,7 +221,7 @@
     position: fixed;
     z-index: var(--overlay-z-index);
     top: 0;
-    background-color: var(--color-pink);
+    background-color: var(--color-green);
     overflow-x: hidden;
   }
 
