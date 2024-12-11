@@ -506,34 +506,4 @@
     }
   }
 
-  .donate_button {
-    display: inline-block;
-    border: 1.01px solid var(--color-dark);
-    background: var(--color-green);
-    color: var(--color-dark);
-    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    padding: 10px 0px;
-    text-align: center;
-    font-size: 30px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition-property: color, border-color, background-color;
-    transition-duration: 300ms;
-    transition-timing-function: ease;
-    width: 100%;
-    text-transform: uppercase;
-    font-size: 20px;
-    text-decoration: none !important;
-    min-width: calc(100% - 1.5em);
-  }
-
-  .button__fadein .donate_button:hover {
-    background: var(--color-dark);
-    color: var(--color-green) !important;
-    transition-property: color, border-color, background-color;
-    transition-duration: 300ms;
-    transition-timing-function: ease;
-    border: 1.01px solid var(--color-dark);
-  }
 </style>
