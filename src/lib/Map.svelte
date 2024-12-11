@@ -127,7 +127,7 @@
         type: 'line',
         source: 'corunaAdminDivision',
         paint: {
-          'line-color': '#dd4783',
+          'line-color': '#80e0a7',
           'line-width': 2,
           'line-opacity': 0.2
         },
@@ -164,16 +164,16 @@
           'circle-color': [
             'step',
             ['get', 'point_count'],
-            '#51bbd6', // Color para baja densidad
-            10, '#f1f075', // Color para densidad media
-            50, '#f28cb1' // Color para alta densidad
+            '#46dd64', // Color para baja densidad
+            10, '#f1bb75', // Color para densidad media
+            40, '#e33163' // Color para alta densidad
           ],
           'circle-radius': [
             'step',
             ['get', 'point_count'],
             15, // Radio para baja densidad
             10, 20, // Radio para densidad media
-            50, 25 // Radio para alta densidad
+            40, 25 // Radio para alta densidad
           ],
           'circle-opacity': 0.6 // Semitransparente
         }
