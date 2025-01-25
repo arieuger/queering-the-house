@@ -31,7 +31,7 @@
         class:active={active_tab == 2}
         style="border-right: 1px solid black;"
         on:click={() => showTabState(2)}
-        >Moderación
+        >Quen somos
       </button>
     </div>
     <div class="info__tabs">
@@ -52,34 +52,22 @@
   <div class="overlay__outer">
     <div class="overlay__content">
       <section style={active_tab !== 1 ? 'display: none;' : ''}>
-        <h2 style="border-top: 0px;">Título 1</h2>
+        <h2 style="border-top: 0px;">Por que poñemos o foco nas vivendas destinadas ao aluguer turístico? </h2>
         <div class="overlay__section-text">
           <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+            O aumento de pisos destinados ao alugueiro turístico ilustran perfectamente as dinámicas socio-económicas descritas nos puntos anteriores. A Coruña é, cada vez menos, unha urbe encamiñada a satisfacer as necesidades das persoas que viven e traballan na Coruña. É, cada vez máis, unha vila orientada a satisfacer as preferencias de consumo de persoas cun alto poder adquisitivo. Os problemas de vivenda que padecemos non son froito dunha escaseza de vivenda real, senón de unha distribución das mesmas coma un ben de mercado. Mentres os turistas atopan, sen moito problema, lugares onde hospedarse, somos quen vivimos e traballamos na Coruña quen nos enfrontamos as dinámicas de expulsión da cidade. Este modelo de turismo afecta directamente ao noso dereito á vivenda, pero ademais deixa un saldo laboral paupérrimo, xa que ofrece moitas menos saídas laborais que o modelo turístico baseado en hoteis e negocios destinados á hospedaxe.
           </p>
-
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-
-          <h2>Título 2</h2>
-          <div class="overlay__section-text">
-            <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-            </p>
-
-          </div>
         </div>
       </section>
       
       <section style={active_tab !== 2 ? 'display: none;' : ''}>
-        <h2>Guía de moderación</h2>
+        <h2>Por que na Falperra e Os Mallos?</h2>
         <div class="overlay__section-text">
           <p>
-            Aquí deberíamos explicar cómo nos guiamos para aceptar ou rexeitar localizacións
+            Os Mallos e a Falperra son dous barrios históricos da Coruña, construídos a raíz da emigración rural da segunda metade do S.XX. Forman parte dos barrios "aluvión", denominados así pola catidade de poboación campesiña e obreira que foron acubillando durante ese período histórico. Durante moitas décadas os distritos próximos ás rondas de circunvalación da Coruña deron residencia á poboación chegada recentemente á cidade que procuraba un lugar onde vivir a un prezo asequíbel. Sen embargo, as transformacións destes últimos anos entorno á vivenda está a expulsar destes e doutros moitos barrios da Coruña tanto aos seus habitantes de toda a vida como ás familias migrantes que se asentan aquí porque noutras zonas da cidade os seus ingresos non lles alcanzan para pagar un aluguer. Tanto Os Mallos como A Falperra son claros exemplos da evolución das prácticas rentistas na nosa cidade. Exemplos de unha maquinaria urbana destinada á circulación de rendas desde os niveis máis baixos da pirámide social cara os chanzos superiores, incapaz de garantir os nosos dereitos máis básicos.
           </p>
 
-          <div class="partial_div-numbered">
+<!--          <div class="partial_div-numbered">
             <span>1</span>
             <p>
               Comprobar se é certo <br />
@@ -100,24 +88,21 @@
               Que non sexa Spam <br />
               Et harum quidem rerum facilis est et expedita distinctio.
             </p>
-          </div>
+          </div> 
 
           <p style="margin-top: 0px;">
             The moderation process is to ensure the safety of the map, and is
             not about policing expressions or identities.
-          </p>
+          </p> -->
           <p>
-            Given the amount of posts that have been made over the past few
-            months, we are at a significant moderation backlog, and are doing
-            our best to publish posts as quickly as we can. We appreciate your
-            patience.
+            Non falamos so de vivenda. Tanto Os Mallos como a Falperra presentan un déficit escandaloso no que respecta a zonas verdes, espazos de lecer, lugares onde a veciñanza puidese xuntarse e desfrutar do seu tempo e espazo en colectivo. Este deseño urbanístico tampouco é unha casualidade. Correspéndese coa idea de cidade compacta froito das xeiras de promoción inmobiliaria da segunda metade do S.XX, que remataron por fomentar prácticas altamente especulativas. A noción do solo urbano coma un ben de mercado rematou por crear barrios de asfalto e formigón pensados como bens residenciais, pero non como espazos para a cidadanía.
           </p>
         </div>
 
-        <h2>Borrado de datos</h2>
+        <h2>Por que un Sindicato de Barrio? </h2>
         <div class="overlay__section-text removal_textarea">
           <p>
-            Imos ter algunha política de borrado de datos?
+            Xunto coas dinámicas de expulsión dos nosos barrios históricos, a ausencia de unha administración pública efectiva que asegure o dereito á vivenda obríganos, a quen padecemos esta situación, a organizarnos por nós mesmas. A forma de Sindicato de Barrio é unha configuración innovadora neste ámbito que coloca en primeiro lugar o dereito a habitar os barrios históricos da cidade. Fronte a uns poderes institucionais e económicos que ensalzan o dereito á propiedade privada como o único dereito que debe ser salvagardado opoñemos o dereito a unha vivenda, as garantías para unha vida digna e a obriga por parte das institucións de orientar a riqueza cara o interese xeral.
           </p>
         </div>
       </section>
