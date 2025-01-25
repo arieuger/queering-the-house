@@ -34,7 +34,7 @@
       "type": "background",
       "minzoom": 0,
       "layout": {"visibility": "visible"},
-      "paint": {"background-color": "rgba(15, 15, 15, 1)"}
+      "paint": {"background-color": "rgba(36, 36, 36, 1)"}
     },
     {
       "id": "water",
@@ -48,7 +48,7 @@
         ["!=", "brunnel", "tunnel"]
       ],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-antialias": false, "fill-color": "rgb(27 ,27 ,29)"}
+      "paint": {"fill-antialias": false, "fill-color": "#070c0f"}
     },
     {
       "id": "landcover_ice_shelf",
@@ -134,8 +134,8 @@
       "layout": {"visibility": "visible"},
       "paint": {
         "fill-antialias": true,
-        "fill-color": "rgba(10, 10, 10, 0.45)",
-        "fill-outline-color": "rgba(243, 178, 237, 0.06)"
+        "fill-color": "rgba(43, 43, 43, 0.45)",
+        "fill-outline-color": "rgba(128, 224, 167, 0.1)"
       }
     },
     {
@@ -259,9 +259,9 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "rgba(24, 24, 24, 0.73)",
         "line-opacity": 0.9,
-        "line-width": {"base": 1.55, "stops": [[13, 1.8], [20, 20]]}
+        "line-width": {"base": 1.55, "stops": [[13, 1.8], [20, 20]]},
+        "line-color": "rgba(26, 26, 26, 1)"
       }
     },
     {
@@ -282,7 +282,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsl(0, 0%, 7%)",
+        "line-color": "rgba(26, 26, 26, 1)",
         "line-width": {"base": 1.3, "stops": [[10, 2], [20, 20]]},
         "line-translate-anchor": "map"
       }
@@ -463,7 +463,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "text-color": "#FB85D6",
+        "text-color": "#80e0a7",
         "text-halo-blur": 0,
         "text-halo-color": "rgba(0, 0, 0, 1)",
         "text-halo-width": 1,
@@ -516,7 +516,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "text-color": "rgba(251, 133, 214, 1)",
+        "text-color": "#80e0a7",
         "text-halo-blur": 1,
         "text-halo-color": "rgba(0,0,0,0.7)",
         "text-halo-width": 1
@@ -541,7 +541,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "text-color": "#FB85D6",
+        "text-color": "#80e0a7",
         "text-halo-blur": 1,
         "text-halo-color": "rgba(0,0,0,0.7)",
         "text-halo-width": 1
@@ -568,7 +568,7 @@
       },
       "paint": {
         "icon-opacity": 0.7,
-        "text-color": "#FB85D6",
+        "text-color": "#80e0a7",
         "text-halo-blur": 1,
         "text-halo-color": "rgba(0,0,0,0.7)",
         "text-halo-width": 1
@@ -596,7 +596,7 @@
       },
       "paint": {
         "icon-opacity": 0.7,
-        "text-color": "#FB85D6",
+        "text-color": "#80e0a7",
         "text-halo-blur": 1,
         "text-halo-color": "rgba(0,0,0,0.7)",
         "text-halo-width": 1
@@ -629,7 +629,7 @@
       },
       "paint": {
         "icon-opacity": 0.7,
-        "text-color": "#FB85D6",
+        "text-color": "#80e0a7",
         "text-halo-blur": 1,
         "text-halo-color": "rgba(0,0,0,0.7)",
         "text-halo-width": 1

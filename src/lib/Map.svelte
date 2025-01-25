@@ -13,9 +13,11 @@
   import markerHoveredImage from '$lib/assets/marker-hovered.png';
   import styleJson from '$lib/data/pmtiles/style.json';
   import corunaDistrictsImport from '$lib/data/coruna-distritos.json';
+  import corunaShapeImport from '$lib/data/coruna-shape.json';
   import addMarkerImage from '$lib/assets/add-marker.png';
   import { activeMarkerCoords } from '../stores';
-  import type { FeatureCollection, GeoJsonProperties, Geometry, Point } from 'geojson';
+  import type { Feature, FeatureCollection, GeoJsonProperties, Point } from 'geojson';
+  import * as martinez from 'martinez-polygon-clipping';
 
   const { Map, NavigationControl, Popup, GeolocateControl } = maplibregl;
   const style = styleJson as StyleSpecification;
@@ -33,12 +35,23 @@
   const activeMarkerSourceId = 'active-marker-source';
   const activeMarkerLayerId = 'active-marker-layer';
 
-  const corunaDistricts: FeatureCollection<Geometry, GeoJsonProperties> = corunaDistrictsImport as FeatureCollection<Geometry, GeoJsonProperties>;
+  const corunaDistricts: FeatureCollection = corunaDistrictsImport as FeatureCollection;
 
   const activeMarkerGeoJSON: FeatureCollection<Point, GeoJsonProperties> = {
     type: 'FeatureCollection',
     features: []
   };
+
+  const worldBoundsCoords = [
+    [
+      [-180, -90],
+      [180, -90],
+      [180, 90],
+      [-180, 90],
+      [-180, -90]
+    ]
+  ];
+
 
   async function getMoment(id?: number | string) {
     try {
@@ -87,18 +100,21 @@
   }
 
   onMount(() => {
+
+
     map = new Map({
       container: mapContainer,
       style: style,
       center: [initialState.lng, initialState.lat],
       zoom: initialState.zoom,
       minZoom: 3,
-      maxZoom: 18
+      maxZoom: 18,
+      maxBounds: [[-8.564529,43.235198], [-8.291588,43.437465]]
     });
 
     map.fitBounds([
-      [-8.543930, 43.300447],
-      [-8.347893,43.399186]
+        [-8.472691,43.300072],
+        [-8.375874,43.396566]
     ]);
 
     map.addControl(
@@ -127,12 +143,41 @@
         type: 'line',
         source: 'corunaAdminDivision',
         paint: {
-          'line-color': '#dd4783',
+          'line-color': '#80e0a7',
           'line-width': 2,
           'line-opacity': 0.2
         },
       });
-      
+
+      const corunaShapeCoords = corunaShapeImport.geometry.coordinates;
+      const differenceCoords = martinez.diff(worldBoundsCoords, corunaShapeCoords);
+      const maskShape : Feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Polygon',
+          coordinates: differenceCoords[0]
+        },
+        properties: {}
+      } as Feature;
+
+      map.addSource('maskShape', {
+        type: 'geojson',
+        data: maskShape,
+      });
+
+      console.log('maskShape', maskShape);
+
+      map.addLayer({
+        id: 'mask-layer',
+        type: 'fill',
+        source: 'maskShape',
+        paint: {
+          'fill-color': '#2b4a37',
+          'fill-opacity': 0.3,
+        },
+      });
+
+
       const response = await fetch(`/moments`);
       const geoJSONData = await response.json();
       
@@ -164,16 +209,16 @@
           'circle-color': [
             'step',
             ['get', 'point_count'],
-            '#51bbd6', // Color para baja densidad
-            10, '#f1f075', // Color para densidad media
-            50, '#f28cb1' // Color para alta densidad
+            '#46dd64', // Color para baja densidad
+            10, '#ea7e66', // Color para densidad media
+            40, '#e33163' // Color para alta densidad
           ],
           'circle-radius': [
             'step',
             ['get', 'point_count'],
             15, // Radio para baja densidad
             10, 20, // Radio para densidad media
-            50, 25 // Radio para alta densidad
+            40, 25 // Radio para alta densidad
           ],
           'circle-opacity': 0.6 // Semitransparente
         }
