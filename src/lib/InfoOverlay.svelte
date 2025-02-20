@@ -218,10 +218,7 @@
         <h2>Contacto</h2>
         <div class="overlay__section-text">
           <p>
-            Inda non temos un correo ou non sei se queredes usar algún que xa tedes
-          </p>
-          <p>
-            O mesmo coas redes sociais
+            Podes contactar connosco a través do correo electrónico sindi@revolteira.gal ou a través da páxina web <a href="https://revolteira.gal/sindi" target="_blank" rel="noopener noreferrer">revolteira.gal/sindi</a>.
           </p>
         </div>
       </section>
