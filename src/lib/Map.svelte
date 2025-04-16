@@ -24,7 +24,7 @@
 
   let map: MapType;
   let mapContainer: HTMLDivElement;
-  let isMomentLayerClicked = false;
+  let isHouseLayerClicked = false;
   // 43.37246278091801, -8.404618701898668
   const initialState = { lng: -8.404618, lat: 43.372462, zoom: 13.5 };
 
@@ -53,13 +53,12 @@
   ];
 
 
-  async function getMoment(id?: number | string) {
+  async function getHouse(id?: number | string) {
     try {
       const response = await fetch(`/moment/${id}`);
-      const moment = await response.json();
-      return moment;
+      return await response.json();
     } catch (error) {
-      console.error('Error fetching moment:', error);
+      console.error('Error fetching house:', error);
       return '';
     }
   }
@@ -259,7 +258,7 @@
         'click',
         markerLayerId,
         function (e: MapMouseEvent & { features?: MapGeoJSONFeature[] }) {
-          isMomentLayerClicked = true;
+          isHouseLayerClicked = true;
           if (!e.features || e.features.length === 0) {
             return;
           }
@@ -275,8 +274,8 @@
             return;
           }
 
-          getMoment(feature.id)
-            .then((momentInfo) => {
+          getHouse(feature.id)
+            .then((houseInfo) => {
               if (coordinates.length === 2) {
                 new Popup({
                   offset: [0, -markerHeight],
@@ -285,17 +284,17 @@
                 })
                   .setLngLat(coordinates as LngLatLike)
                   .setHTML(
-                    '<b>Dirección:</b> ' + momentInfo.address + '<br>' +
-                    '<b>Observacións:</b> ' + momentInfo.description + '<br>' +
-                    '<b>Licencia:</b> ' + momentInfo.license + '<br>' +
-                    '<b>Fonte/s:</b> ' + momentInfo.sources)
+                    '<b>Dirección:</b> ' + houseInfo.address + '<br>' +
+                    '<b>Observacións:</b> ' + houseInfo.description + '<br>' +
+                    '<b>Licencia:</b> ' + houseInfo.license + '<br>' +
+                    '<b>Fonte/s:</b> ' + houseInfo.sources)
                   .addTo(map);
               } else {
                 console.error('Invalid coordinates format');
               }
             })
             .catch((error) => {
-              console.error('Error fetching moment:', error);
+              console.error('Error fetching house:', error);
             });
         }
       );
@@ -339,8 +338,8 @@
       });
 
       map.on('click', (e: MapMouseEvent) => {
-        if (isMomentLayerClicked) {
-          isMomentLayerClicked = false;
+        if (isHouseLayerClicked) {
+          isHouseLayerClicked = false;
           return;
         }
 
