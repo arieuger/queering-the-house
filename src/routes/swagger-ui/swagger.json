@@ -5,7 +5,7 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/moments": {
+    "/houses": {
       "get": {
         "summary": "Obtén listado de todas as ubicacións con \"short_id\" e coordenadas",
         "responses": {
@@ -54,11 +54,11 @@
         }
       }
     },
-    "/moment/{momentId}": {
+    "/house/{houseId}": {
       "get": {
         "summary": "Obtén a descripción de unha ubicación según o seu \"short_id\"",
         "parameters": [ {
-          "name": "momentId",
+          "name": "houseId",
           "required": true,
           "schema": {
             "type": "integer"

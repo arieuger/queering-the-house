@@ -34,12 +34,12 @@ export async function fetchIdCoords(): Promise<FeatureCollection<
 
   const geoJson: FeatureCollection<Point, GeoJsonProperties> = {
     type: 'FeatureCollection',
-    features: (data as House[]).map((moment) => ({
+    features: (data as House[]).map((house) => ({
       type: 'Feature',
-      id: moment.short_id,
+      id: house.short_id,
       geometry: {
         type: 'Point',
-        coordinates: roundCoordinates(moment.location.coordinates, 6)
+        coordinates: roundCoordinates(house.location.coordinates, 6)
       },
       properties: {} // Include properties to match GeoJSON structure
     }))
@@ -62,18 +62,16 @@ export async function fetchIdDescriptions(): Promise<Record<
     return null;
   }
 
-  const descriptions: Record<number, string> = (data as House[]).reduce(
-    (acc, moment) => {
-      acc[moment.short_id] = moment.description;
+  return (data as House[]).reduce(
+    (acc, house) => {
+      acc[house.short_id] = house.description;
       return acc;
     },
     {} as Record<number, string>
   );
-
-  return descriptions;
 }
 
-export async function getMomentInfoById(
+export async function getHouseInfoById(
   shortId: string
 ): Promise<HouseInfo | null> {
   const { data, error } = await supabase
@@ -89,10 +87,11 @@ export async function getMomentInfoById(
   if (data) {
     return {
       short_id: data[0].short_id,
-      description: data[0].description !== null ? <string>data[0].description : '',
+      description:
+        data[0].description !== null ? <string>data[0].description : '',
       license: data[0].license !== null ? <string>data[0].license : '',
       address: data[0].address !== null ? <string>data[0].address : '',
-      sources: data[0].sources !== null ? <string>data[0].sources : '',
+      sources: data[0].sources !== null ? <string>data[0].sources : ''
     };
   }
 

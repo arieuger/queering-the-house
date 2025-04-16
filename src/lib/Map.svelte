@@ -29,9 +29,9 @@
   const initialState = { lng: -8.404618, lat: 43.372462, zoom: 13.5 };
 
   const markerHeight = 39;
-  const markerId = 'moments';
-  const markerLayerId = 'moments-layer';
-  const markerHoveredLayerId = 'moments-hovered-layer';
+  const markerId = 'houses';
+  const markerLayerId = 'houses-layer';
+  const markerHoveredLayerId = 'houses-hovered-layer';
   const activeMarkerSourceId = 'active-marker-source';
   const activeMarkerLayerId = 'active-marker-layer';
 
@@ -55,7 +55,7 @@
 
   async function getHouse(id?: number | string) {
     try {
-      const response = await fetch(`/moment/${id}`);
+      const response = await fetch(`/house/${id}`);
       return await response.json();
     } catch (error) {
       console.error('Error fetching house:', error);
@@ -177,7 +177,7 @@
       });
 
 
-      const response = await fetch(`/moments`);
+      const response = await fetch(`/houses`);
       const geoJSONData = await response.json();
       
       if (geoJSONData) {
@@ -202,7 +202,7 @@
       map.addLayer({
         id: 'clusters',
         type: 'circle',
-        source: 'moments',
+        source: 'houses',
         filter: ['has', 'point_count'], // Solo clústeres
         paint: {
           'circle-color': [
@@ -227,7 +227,7 @@
       map.addLayer({
         id: 'cluster-count',
         type: 'symbol',
-        source: 'moments',
+        source: 'houses',
         filter: ['has', 'point_count'], // Solo clústeres
         layout: {
           'text-field': '{point_count_abbreviated}', // Número abreviado

@@ -54,7 +54,7 @@ export const POST: RequestHandler = async ({ request }) => {
   ]);
 
   if (error) {
-    return json({ error: 'Error saving new moment' }, { status: 500 });
+    return json({ error: 'Error saving new house' }, { status: 500 });
   }
 
   return json({}, { status: 201 });
