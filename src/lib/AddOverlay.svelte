@@ -14,10 +14,10 @@
   import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
   import { SvelteToast, toast } from '@zerodevx/svelte-toast';
 
-  let momentAddress = '';
-  let momentDescription = '';
-  let momentLicense = '';
-  let momentSources = '';
+  let houseAddress = '';
+  let houseDescription = '';
+  let houseLicense = '';
+  let houseSources = '';
   let captchaToken = '';
   let isAddButtonDisabled = true;
   let requestCaptcha = false;
@@ -47,9 +47,9 @@
   $: isAddButtonDisabled =
     !$activeMarkerCoords?.lng ||
     !$activeMarkerCoords?.lat ||
-    !momentAddress;
+    !houseAddress;
 
-  async function handleAddMoment() {
+  async function handleAddHouse() {
     if (!captchaToken) {
       alert('Please complete the CAPTCHA.');
       return;
@@ -58,10 +58,10 @@
     const payload = JSON.stringify({
       lng: $activeMarkerCoords?.lng,
       lat: $activeMarkerCoords?.lat,
-      address: momentAddress,
-      description: momentDescription,
-      license: momentLicense,
-      sources: momentSources,
+      address: houseAddress,
+      description: houseDescription,
+      license: houseLicense,
+      sources: houseSources,
       captchaToken
     });
 
@@ -86,7 +86,7 @@
     e: CustomEvent<TurnstileEventDetail<{ token: string }>>
   ) => {
     captchaToken = e.detail.token;
-    handleAddMoment();
+    handleAddHouse();
   };
 
   new SvelteToast({
@@ -125,28 +125,28 @@
           </div>
           <form>
             <textarea
-              bind:value={momentAddress}
+              bind:value={houseAddress}
               placeholder="Dirección"
               rows="1"
               id="txt_address"
               class="subform-sm"
             ></textarea>
             <textarea 
-              bind:value={momentDescription}
+              bind:value={houseDescription}
               placeholder="Observacións"
               rows="1"
               id="txt_description"
               class="subform"
             ></textarea>
             <textarea
-              bind:value={momentLicense}
+              bind:value={houseLicense}
               placeholder="Licencia"
               rows="1"
               id="txt_license"
               class="subform-sm"
             ></textarea>
             <textarea
-              bind:value={momentSources}
+              bind:value={houseSources}
               placeholder="Fonte/s"
               rows="1"
               id="txt_sources"

@@ -42,7 +42,7 @@ export const POST: RequestHandler = async ({ request }) => {
   }
 
   // TODO: Mover a capa de servicio 
-  const { error } = await supabase.from('moments').insert([
+  const { error } = await supabase.from('houses').insert([
     {
       location: `SRID=4326;POINT(${lng} ${lat})`,
       status: 'pending',
