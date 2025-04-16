@@ -25,7 +25,7 @@
     property="og:description"
     content="Mapea os pisos turísticos da cidade da Coruña."
   />
-  <meta property="og:site_name" content="Queering The Map" />
+  <meta property="og:site_name" content="RENDISTMAP" />
   <meta property="og:locale" content="es_GL" />
   
   <!-- TODO -->
