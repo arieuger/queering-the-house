@@ -85,7 +85,7 @@
         margin-bottom: 1rem;
     }
     .logo img {
-        max-width: 80%;
+        max-width: 70%;
         height: auto;
         display: block;
     }
