@@ -1,26 +1,27 @@
 <script>
 
   import logo from '$lib/assets/logo.png';
-  import { goto } from '$app/navigation';
+  import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+  import {
+    faTachometerAlt,
+    faUsers,
+    faBuilding,
+    faGavel,
+    faSignOutAlt
+  } from '@fortawesome/free-solid-svg-icons';
 
   // Opciones del menú
   let menuOptions = [
-    { name: 'Dashboard', link: '/manage' },
-    { name: 'Usuarios', link: '/manage' },
-    { name: 'Pisos', link: '/manage' },
-    { name: 'Moderación', link: '/manage' }
+    { name: 'Dashboard',    link: '/manage',  icon: faTachometerAlt },
+    { name: 'Usuarios',     link: '/manage',  icon: faUsers },
+    { name: 'Pisos',        link: '/manage',  icon: faBuilding },
+    { name: 'Moderación',   link: '/manage',  icon: faGavel },
+    { name: 'Cerrar sesión',link: '/logout',  icon: faSignOutAlt }
   ];
 
   // Variable para controlar la visibilidad de la sidebar en móvil
   let isSidebarOpen = false;
-
-  async function logout() {
-    // 1) Llamas al endpoint que borra la cookie
-    await fetch('/api/auth/logout', { method: 'POST' });
-    // 2) Rediriges al login
-    goto('/login');
-  }
-  
+ 
 </script>
 
 <!-- Botón de menú hamburguesa para dispositivos móviles (oculto en escritorio) -->
@@ -55,11 +56,13 @@
         {#each menuOptions as option}
           <li>
             <a href={option.link} on:click={() => (isSidebarOpen = false)}>
-              {option.name}
+              <span class="icon">
+                <FontAwesomeIcon icon={option.icon}/>
+              </span>
+              <span>{option.name}</span>
             </a>
           </li>
         {/each}
-        <li><a href="/logout">Cerrar sesión</a></li>
       </ul>
     </nav>
   </aside>
@@ -103,7 +106,7 @@
     /* Menú de opciones */
     nav ul {
         list-style: none;
-        padding: 0;
+        padding: 1.5rem 0 0;
         margin: 0;
     }
     nav ul li {
@@ -121,6 +124,10 @@
     nav ul li a:hover {
         background-color: var(--color-green);
         color: var(--color-dark);
+    }
+
+    .icon {
+        margin-right: 1rem;
     }
 
     /* Contenido principal */

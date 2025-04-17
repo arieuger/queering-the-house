@@ -34,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "@typescript-eslint/parser": "^7.16.1",
     "@zerodevx/svelte-toast": "^0.9.5",
+    "babel-plugin-macros": "^3.1.0",
     "eslint": "8.57",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-svelte": "^2.43.0",
@@ -48,11 +49,15 @@
     "typescript-eslint": "^7.16.1",
     "vite": "^5.4.6",
     "vite-node": "^2.0.3",
+    "vite-plugin-babel-macros": "^1.0.6",
     "vitest": "^2.0.3"
   },
   "type": "module",
   "dependencies": {
     "@fontsource/apfel-grotezk": "^5.0.11",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/svelte-fontawesome": "^0.2.3",
     "@supabase/supabase-js": "^2.44.4",
     "@sveltejs/adapter-node": "^5.2.9",
     "cors": "^2.8.5",
