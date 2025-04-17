@@ -1,6 +1,7 @@
 <script>
 
   import logo from '$lib/assets/logo.png';
+  import { goto } from '$app/navigation';
 
   // Opciones del menú
   let menuOptions = [
@@ -12,6 +13,14 @@
 
   // Variable para controlar la visibilidad de la sidebar en móvil
   let isSidebarOpen = false;
+
+  async function logout() {
+    // 1) Llamas al endpoint que borra la cookie
+    await fetch('/api/auth/logout', { method: 'POST' });
+    // 2) Rediriges al login
+    goto('/login');
+  }
+  
 </script>
 
 <!-- Botón de menú hamburguesa para dispositivos móviles (oculto en escritorio) -->
@@ -50,6 +59,7 @@
             </a>
           </li>
         {/each}
+        <li><a href="/logout">Cerrar sesión</a></li>
       </ul>
     </nav>
   </aside>
