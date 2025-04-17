@@ -8,7 +8,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
     throw redirect(303, '/login');
   }
 
-  // console.log("logueado: " + locals.user.email);
+  console.log("logueado: " + locals.user.roles);
 
   return {user: locals.user};
 }

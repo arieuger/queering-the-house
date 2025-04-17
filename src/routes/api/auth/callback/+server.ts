@@ -39,16 +39,17 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
     email?: string;
     name?:  string;
     picture?: string;
+    'rendistmap/roles'?: string[];
   }
-  
+
   const user = jwtDecode<JwtPayload>(id_token);
-  console.log('user: ', user);  
+  // console.log(user);
   
   cookies.set('session', JSON.stringify({
     id: user.sub,
     name: user.name,
     email: user.email,
-    roles: ['admin']
+    roles: user['rendistmap/roles']
   }), {
     path: '/',
     httpOnly: true,
