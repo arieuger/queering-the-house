@@ -1,45 +1,42 @@
-<script>
-  import { invalidate, goto } from '$app/navigation';
+<script lang="ts">
+  import { goto } from '$app/navigation';
+  import { onMount } from 'svelte';
 
-  let username = '';
-  let password = '';
-  let errorMessage = '';
-
-  async function login(event) {
-    event.preventDefault();
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-
-    if (res.ok) {
-      // Actualiza datos en el cliente y redirige a la sección protegida
-      await invalidate();
+  // Si ya estás logueado, redirige automáticamente
+  export let data : { user: null | { name, email, roles } };
+  onMount(() => {
+    if (data.user) {
       goto('/manage');
-    } else {
-      const errorRes = await res.json();
-      errorMessage = errorRes.error || 'Error en el login';
     }
+  });
+
+  // Al hacer clic lanzamos la petición GET a nuestro endpoint de login
+  function loginWithOAuth() {
+    // Simplemente navegamos al endpoint que redirige al proveedor
+    window.location.href = '/api/auth/login';
   }
 </script>
 
 <main>
-  <h1>Iniciar Sesión</h1>
-  {#if errorMessage}
-    <p style="color:red;">{errorMessage}</p>
-  {/if}
-  <form on:submit={login}>
-    <label>
-      Usuario:
-      <input type="text" bind:value={username} required />
-    </label>
-    <br />
-    <label>
-      Contraseña:
-      <input type="password" bind:value={password} required />
-    </label>
-    <br />
-    <button type="submit">Login</button>
-  </form>
+  <h1>Iniciar sesión</h1>
+  <p>Para acceder al dashboard utiliza tu cuenta OAuth:</p>
+  <button on:click={loginWithOAuth}>
+    Login con proveedor OAuth
+  </button>
 </main>
+
+<style>
+    main {
+        max-width: 400px;
+        margin: 2rem auto;
+        padding: 1rem;
+        text-align: center;
+        font-family: sans-serif;
+    }
+    button {
+        margin-top: 1rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+</style>
