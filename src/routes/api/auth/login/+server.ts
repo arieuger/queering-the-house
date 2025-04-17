@@ -9,7 +9,8 @@ export const GET: RequestHandler = ({ url }) => {
     response_type: 'code',
     client_id: OAUTH_CLIENT_ID,
     redirect_uri: redirectUri,
-    state: crypto.randomUUID()    
+    state: crypto.randomUUID(),
+    scope: 'openid profile email'
   });
   
   throw redirect(302,`${OAUTH_AUTHORIZE_URL}?${params}`);

@@ -1,14 +1,15 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { redirect, error } from '@sveltejs/kit';
-import { OAUTH_TOKEN_URL, OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, OAUTH_USERINFO_URL, OAUTH_AUDIENCE } from '$env/static/private';
+import { OAUTH_TOKEN_URL, OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET } from '$env/static/private';
+import { jwtDecode } from "jwt-decode";
 
 export const GET: RequestHandler = async ({ url, cookies }) => {
   const origin      = url.origin;
   const redirectUri = `${origin}/api/auth/callback`;
   const code = url.searchParams.get('code');
-  
+
   if (!code) throw error(400, 'Falta código de autorización');
-  
+
   const tokenRes = await fetch(OAUTH_TOKEN_URL, {
     method: 'POST',
     headers: {
@@ -21,32 +22,27 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
       redirect_uri: redirectUri,
       client_id: OAUTH_CLIENT_ID,
       client_secret: OAUTH_CLIENT_SECRET,
-      scope: 'openid profile email',
-      audience: OAUTH_AUDIENCE
+      scope: 'openid profile email'
     })
   });
-  
+
   if (!tokenRes.ok) {
     const text = await tokenRes.text();
     console.error('Token endpoint failed', tokenRes.status, text);
     throw error(500, 'Error al obtener tokens');
   } 
-  const { access_token } = await tokenRes.json();
-  
-  const profileRes = await fetch(OAUTH_USERINFO_URL, {
-    headers: {
-      Authorization: `Bearer ${access_token}`, 
-      Accept:        'application/json'
-    }
-  });
-  
-  
-  if (!profileRes.ok) {
-    const text = await profileRes.text();
-    console.error('Userinfo endpoint failed', profileRes.status, text);
-    throw error(500, 'Error al obtener perfil de usuario');
+  const { id_token } = await tokenRes.json();
+  // console.log('id_token: ', id_token);
+
+  interface JwtPayload {
+    sub:   string;
+    email?: string;
+    name?:  string;
+    picture?: string;
   }
-  const user = await profileRes.json();
+  
+  const user = jwtDecode<JwtPayload>(id_token);
+  console.log('user: ', user);  
   
   cookies.set('session', JSON.stringify({
     id: user.sub,
