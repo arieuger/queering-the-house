@@ -2,11 +2,24 @@
   import { onMount } from 'svelte';
   import '$lib/style.css';
   import '$lib/navbar_buttons.css';
+  import '$lib/admin-style.css';
 
   // Arreglo para almacenar los datos obtenidos de la BD
   let dataItems = [
     {id: 1, name: 'Item 1'},
     {id: 2, name: 'Item 2'},
+    {id: 3, name: 'Item 2'},
+    {id: 4, name: 'Item 2'},
+    {id: 5, name: 'Item 2'},
+    {id: 6, name: 'Item 2'},
+    {id: 7, name: 'Item 2'},
+    {id: 8, name: 'Item 2'},
+    {id: 9, name: 'Item 2'},
+    {id: 10, name: 'Item 2'},
+    {id: 11, name: 'Item 2'},
+    {id: 12, name: 'Item 2'},
+    {id: 13, name: 'Item 2'},
+    {id: 14, name: 'Item 2'},
   ];
 
   // Objeto para los datos del nuevo item a agregar
@@ -54,10 +67,9 @@
         <tbody>
         {#each dataItems as item (item.id)}
           <tr>
-            <td>{item.id}</td>
-            <td>{item.name}</td>
-            <td>
-              <!-- <button on:click={() => deleteItem(item.id)}>Eliminar</button> -->
+            <td data-label="ID">{item.id}</td>
+            <td data-label="Nombre">{item.name}</td>
+            <td data-label="Acciones">
               <button>Eliminar</button>
             </td>
           </tr>
@@ -69,63 +81,3 @@
     {/if}
   </section>
 </main>
-
-<!-- Estilos específicos del dashboard -->
-<style>
-    main {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 0 1rem;
-    }
-
-    h1, h2 {
-        text-align: center;
-        color: var(--color-dark);
-    }
-
-    section {
-        margin-bottom: 2rem;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-
-    label {
-        margin-bottom: 0.5rem;
-    }
-
-    input {
-        padding: 0.5rem;
-        margin-left: 0.5rem;
-    }
-
-    button {
-        padding: 0.5rem 1rem;
-        margin-top: 0.5rem;
-        cursor: pointer;
-        transition: background-color var(--transition-duration) var(--transition-timing-function);
-    }
-
-    button:hover {
-        background-color: var(--color-green);
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 1px solid #ccc;
-        padding: 0.75rem;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f0f0f0;
-    }
-</style>

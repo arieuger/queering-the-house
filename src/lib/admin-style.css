@@ -1,0 +1,100 @@
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--color-dark);
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+input {
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-timing-function);
+}
+
+button:hover {
+    background-color: var(--color-green);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-family: 'Apfel Grotezk', sans-serif;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Encabezados */
+th {
+    background-color: var(--color-green-bright);
+    color: var(--color-dark);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-green);
+}
+
+/* Celdas */
+td {
+    padding: 0.5rem 1rem;
+    color: var(--color-dark);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Filas alternas para mejor legibilidad */
+tbody tr:nth-child(even) {
+    background-color: #d6efda;
+    color: var(--color-dark);
+}
+
+/* Hover sobre la fila */
+tbody tr:hover {
+    background-color: #ea618c;
+}
+
+tr:hover td {
+    color: white;
+}
+
+/* Botones dentro de la tabla */
+table button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: var(--color-dark);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-timing-function);
+}
+
+table button:hover {
+    background-color: var(--color-green);
+}
