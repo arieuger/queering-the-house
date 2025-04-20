@@ -1,10 +1,10 @@
 <script lang="ts">
   import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-  import { faBars }        from '@fortawesome/free-solid-svg-icons';
+  import { faFilter }        from '@fortawesome/free-solid-svg-icons';
 
-  export let title = 'Anadir';
+  export let title = 'Filtrar';
 </script>
 
 <button class="general_button__fadein" aria-label={title}>
-  <FontAwesomeIcon class="icon" icon={faBars} size="2x" />
+  <FontAwesomeIcon class="icon" icon={faFilter} size="2x" />
 </button>

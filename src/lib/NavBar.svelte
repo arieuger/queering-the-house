@@ -3,6 +3,7 @@
   import InfoButton from './InfoButton.svelte';
   import AddButton from './AddButton.svelte';
   import { infoOverlayVisible, addOverlayVisible } from '../stores';
+  import FilterButton from '$lib/FilterButton.svelte';
 
   function openInfoOverlay() {
     infoOverlayVisible.update(() => true);
@@ -35,6 +36,15 @@
     aria-label="open add overlay"
   >
     <AddButton />
+  </button>
+  
+  <!-- Botón para filtrado -->
+  <button
+    class="overlay-trigger overlay-trigger--filter"
+    id="filter"
+    aria-label="open filter overlay"
+  >
+    <FilterButton />  
   </button>
 </nav>
 
@@ -96,5 +106,10 @@
   .overlay-trigger.overlay-trigger--add {
     right: 9px;
     top: 9px;
+  }
+
+  .overlay-trigger.overlay-trigger--filter {
+      right: 60px;
+      top: 9px;
   }
 </style>

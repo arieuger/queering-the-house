@@ -3,19 +3,17 @@
 /******************************************************************************/
 .general_button__fadein {
   width: 45px;
+  height: 45px;
+  color: var(--color-dark);
+  background-color: var(--color-green);
+  border: 1px solid var(--color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-duration) var(--transition-timing-function);
 }
-.general_button__fadein:hover rect,
-.general_button__fadein:hover circle,
-.general_button__fadein:hover line {
-  transition-property: fill, stroke, opacity, color, border-color,
-    background-color;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-}
-.general_button__fadein:hover rect {
-  fill: var(--color-dark) !important;
-}
-.general_button__fadein:hover circle,
-.general_button__fadein:hover line {
-  stroke: var(--color-green) !important;
+.general_button__fadein:hover {
+  background-color: var(--color-dark);
+  color: var(--color-green);
+  cursor: pointer;
 }

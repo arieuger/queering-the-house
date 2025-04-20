@@ -164,8 +164,6 @@
         data: maskShape,
       });
 
-      console.log('maskShape', maskShape);
-
       map.addLayer({
         id: 'mask-layer',
         type: 'fill',
