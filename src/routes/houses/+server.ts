@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { supabase } from '$lib/clients/supabaseClient';
 import { CLOUDFLARE_TURNSTILE_SECRET } from '$env/static/private';
-import { fetchIdCoords } from '$lib/services/map.service';
+import { fetchIdCoords, insertHouse } from '$lib/services/map.service';
 
 export const GET: RequestHandler = async () => {
   const geoJSONData = await fetchIdCoords();
@@ -41,19 +41,18 @@ export const POST: RequestHandler = async ({ request }) => {
     return json({ error: 'CAPTCHA verification failed.' }, { status: 400 });
   }
 
-  // TODO: Mover a capa de servicio 
-  const { error } = await supabase.from('houses').insert([
-    {
-      location: `SRID=4326;POINT(${lng} ${lat})`,
-      status: 'pending',
-      data: {
-        description: description || '',
-        license: license || '',
-        address: address,
-        sources: sources || ''
-      }
+  const insertData : object = {
+    location: `SRID=4326;POINT(${lng} ${lat})`,
+    status: 'pending',
+    data: {
+      description: description || '',
+      license: license || '',
+      address: address,
+      sources: sources || ''
     }
-  ]);
+  }
+
+  const { error } = await insertHouse(insertData);
 
   if (error) {
     return json({ error: 'Error saving new house' }, { status: 500 });

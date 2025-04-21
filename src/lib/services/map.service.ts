@@ -48,6 +48,17 @@ export async function fetchIdCoords(): Promise<FeatureCollection<
   return geoJson;
 }
 
+export async function insertHouse(data: object): Promise<{ data: any, error: any }> {
+  const result = await supabase.from('houses').insert(data);
+
+  if (result.error) {
+    console.error('Error inserting house:', result.error);
+    throw new Error('Error inserting house');
+  }
+
+  return result;
+}
+
 export async function getHouseInfoById(
   shortId: string
 ): Promise<HouseInfo | null> {
