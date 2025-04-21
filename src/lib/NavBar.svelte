@@ -1,15 +1,24 @@
-<script>
+<script lang="ts">
   import logo from '$lib/assets/logo.png';
   import InfoButton from './InfoButton.svelte';
   import AddButton from './AddButton.svelte';
   import { infoOverlayVisible, addOverlayVisible } from '../stores';
   import FilterButton from '$lib/FilterButton.svelte';
+  import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+  import { faBuilding, faCompass }        from '@fortawesome/free-solid-svg-icons';
+  import ToggleSwitch from '$lib/ToggleSwitch.svelte';
+  let onTouristPlaces = true;
+
 
   function openInfoOverlay() {
     infoOverlayVisible.update(() => true);
   }
   function openAddOverlay() {
     addOverlayVisible.update(() => true);
+  }
+  function handleToggle(e: CustomEvent<boolean>) {
+    onTouristPlaces = e.detail;
+    // TODO: Recarga a otro tipo de mapa
   }
 </script>
 
@@ -46,6 +55,30 @@
   >
     <FilterButton />  
   </button>
+
+  <aside class="overlay overlay--switch">
+    <div class="action-button-container">
+    </div>
+      <div class="bordered">
+        <section>
+          <div class="overlay__section-text no-margin">
+            <div class="partial_div">
+              <span class="overlay-switch--left">
+                <FontAwesomeIcon icon={faBuilding} size="2xl" />
+              </span>
+
+              <span class="overlay-switch--center" on:click={() => (onTouristPlaces = !onTouristPlaces)}>
+                <ToggleSwitch bind:checked={onTouristPlaces} on:change={handleToggle} />
+              </span>
+
+              <span class="overlay-switch--right">
+                <FontAwesomeIcon icon={faCompass} size="2xl" />
+              </span>
+            </div>
+          </div>
+        </section>
+      </div>
+  </aside>
 </nav>
 
 <style>
@@ -96,6 +129,7 @@
       top: 0.5em;
     }
   }
+
   /* Specifically for the info button  */
   .overlay-trigger.overlay-trigger--info {
     left: 9px;
@@ -112,4 +146,23 @@
       right: 60px;
       top: 9px;
   }
+  .overlay--switch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem;
+      right: 9px;
+      top: 60px;
+      min-width: 95px;
+  }
+
+
+  .overlay-switch--center {
+      flex: 1;
+      text-align: center;
+      padding: 0.4rem;
+  }
+
+
+
 </style>

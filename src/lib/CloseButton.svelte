@@ -11,7 +11,7 @@
   aria-label="close overlay"
   style={position === 'right' ? 'right: 0' : ''}
 >
-  <FontAwesomeIcon class="close-btn " icon={ faClose } size="2x"/>
+  <FontAwesomeIcon class="icon " icon={ faClose } size="2x"/>
 </button>
 
 <style>
