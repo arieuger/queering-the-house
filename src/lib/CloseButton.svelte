@@ -7,11 +7,11 @@
 
 <button
   on:click={functionOnClick}
-  class="close-btn "
+  class="general_button__fadein close-btn "
   aria-label="close overlay"
   style={position === 'right' ? 'right: 0' : ''}
 >
-  <FontAwesomeIcon class="icon general_button__fadein" icon={ faClose } size="xs"/>
+  <FontAwesomeIcon class="close-btn " icon={ faClose } size="2x"/>
 </button>
 
 <style>
@@ -21,8 +21,6 @@
 
   .close-btn {
     position: fixed;
-    border: none;
-    background-color: transparent;
     overflow: hidden;
     padding: 0px;
   }
