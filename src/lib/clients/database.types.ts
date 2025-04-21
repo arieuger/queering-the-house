@@ -13,11 +13,13 @@ export type Database = {
         Row: {
           address: string | null
           created_at: string
+          data: Json | null
           description: string | null
           id: string
           language: string | null
           license: string | null
           location: unknown | null
+          reference_date: string | null
           short_id: number
           sources: string | null
           status: Database["public"]["Enums"]["house_publish_status"] | null
@@ -25,11 +27,13 @@ export type Database = {
         Insert: {
           address?: string | null
           created_at?: string
+          data?: Json | null
           description?: string | null
           id?: string
           language?: string | null
           license?: string | null
           location?: unknown | null
+          reference_date?: string | null
           short_id?: number
           sources?: string | null
           status?: Database["public"]["Enums"]["house_publish_status"] | null
@@ -37,11 +41,13 @@ export type Database = {
         Update: {
           address?: string | null
           created_at?: string
+          data?: Json | null
           description?: string | null
           id?: string
           language?: string | null
           license?: string | null
           location?: unknown | null
+          reference_date?: string | null
           short_id?: number
           sources?: string | null
           status?: Database["public"]["Enums"]["house_publish_status"] | null

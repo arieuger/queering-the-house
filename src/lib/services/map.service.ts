@@ -48,35 +48,12 @@ export async function fetchIdCoords(): Promise<FeatureCollection<
   return geoJson;
 }
 
-export async function fetchIdDescriptions(): Promise<Record<
-  number,
-  string
-> | null> {
-  const { data, error } = await supabase
-    .from('houses')
-    .select('short_id, description')
-    .eq('status', 'approved');
-
-  if (error) {
-    console.error('Error fetching id and description pairs:', error);
-    return null;
-  }
-
-  return (data as House[]).reduce(
-    (acc, house) => {
-      acc[house.short_id] = house.description;
-      return acc;
-    },
-    {} as Record<number, string>
-  );
-}
-
 export async function getHouseInfoById(
   shortId: string
 ): Promise<HouseInfo | null> {
   const { data, error } = await supabase
     .from('houses')
-    .select('short_id, description, license, address, sources')
+    .select('short_id, data->>description, data->>license, data->>address, data->>sources')
     .eq('short_id', shortId);
 
   if (error) {

@@ -46,10 +46,12 @@ export const POST: RequestHandler = async ({ request }) => {
     {
       location: `SRID=4326;POINT(${lng} ${lat})`,
       status: 'pending',
-      description: description?.length == 0 ? null : description,
-      sources: sources.length == 0 ? null : sources,
-      address: address.length == 0 ? null : address,
-      license: license.length == 0 ? null : license
+      data: {
+        description: description || '',
+        license: license || '',
+        address: address,
+        sources: sources || ''
+      }
     }
   ]);
 
