@@ -33,7 +33,7 @@
 
   const showSubmissionSuccessNotification = () => {
     toast.push(
-      'Your story was successfully submitted. It will appear publicly on the map once it has been approved by our moderators.',
+      'A ubicación foi enviada correctamente. Aparecerá no mapa unha vez que sexa aprobada polxs moderadorxs.',
       {
         theme: {
           '--toastBarHeight': 0

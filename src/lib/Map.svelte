@@ -18,6 +18,7 @@
   import { activeMarkerCoords } from '../stores';
   import type { Feature, FeatureCollection, GeoJsonProperties, Point } from 'geojson';
   import * as martinez from 'martinez-polygon-clipping';
+  import HouseInfoOverlay from '$lib/HouseInfoOverlay.svelte';
 
   const { Map, NavigationControl, Popup, GeolocateControl } = maplibregl;
   const style = styleJson as StyleSpecification;
@@ -25,6 +26,7 @@
   let map: MapType;
   let mapContainer: HTMLDivElement;
   let isHouseLayerClicked = false;
+  let selectedHouse = null;
   // 43.37246278091801, -8.404618701898668
   const initialState = { lng: -8.404618, lat: 43.372462, zoom: 13.5 };
 
@@ -255,7 +257,7 @@
       map.on(
         'click',
         markerLayerId,
-        function (e: MapMouseEvent & { features?: MapGeoJSONFeature[] }) {
+        async (e) => {
           isHouseLayerClicked = true;
           if (!e.features || e.features.length === 0) {
             return;
@@ -272,28 +274,13 @@
             return;
           }
 
-          getHouse(feature.id)
-            .then((houseInfo) => {
-              if (coordinates.length === 2) {
-                new Popup({
-                  offset: [0, -markerHeight],
-                  anchor: 'bottom',
-                  maxWidth: 'none'
-                })
-                  .setLngLat(coordinates as LngLatLike)
-                  .setHTML(
-                    '<b>Dirección:</b> ' + houseInfo.address + '<br>' +
-                    '<b>Observacións:</b> ' + houseInfo.description + '<br>' +
-                    '<b>Licencia:</b> ' + houseInfo.license + '<br>' +
-                    '<b>Fonte/s:</b> ' + houseInfo.sources)
-                  .addTo(map);
-              } else {
-                console.error('Invalid coordinates format');
-              }
-            })
-            .catch((error) => {
-              console.error('Error fetching house:', error);
-            });
+          const houseInfo = await getHouse(feature.id);
+          selectedHouse = {
+            address:     houseInfo.address,
+            description: houseInfo.description,
+            license:     houseInfo.license,
+            sources:     houseInfo.sources
+          };
         }
       );
 
@@ -372,8 +359,15 @@
       map.remove();
     }
   });
+
+  function closeOverlay() {
+    selectedHouse = null;
+  }
 </script>
 
+{#if selectedHouse}
+  <HouseInfoOverlay  house= { selectedHouse } on:close={closeOverlay}/>
+{/if}
 <div id="map" bind:this={mapContainer}></div>
 
 <style>

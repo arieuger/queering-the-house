@@ -46,7 +46,8 @@ body {
   margin-left: -1px;
 }
 
-.overlay--add button {
+.overlay--add .close-btn,
+.overlay--house-info .close-btn {
   top: 9px;
   right: 9px !important;
 }
@@ -202,7 +203,8 @@ textarea {
     padding-left: 0.5em;
   }
   .overlay--add,
-  .overlay__outer {
+  .overlay__outer,
+  .overlay--house-info{
     width: 100%;
   }
   .overlay__outer {
@@ -222,7 +224,7 @@ textarea {
     /*height: 125px;*/
     margin-top: 10px;
   }
-  .overlay--add {
+  .overlay--add, .overlay--house-info {
     border: 1.01px solid var(--color-dark);
     position: fixed;
     top: unset;
@@ -245,7 +247,7 @@ textarea {
     margin-bottom: 0.8em;
   }
 
-  .overlay--add {
+  .overlay--add, .overlay--house-info {
     border-top: none;
     border-left: var(--color-dark) solid 1px;
     box-shadow: -4px 0px 6px 0px rgba(0, 0, 0, 0.5);
