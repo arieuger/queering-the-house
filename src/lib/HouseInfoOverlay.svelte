@@ -1,6 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import CloseButton from '$lib/CloseButton.svelte';
+  import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+  import { faLocationDot, faFileLines, faEye, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
   export let house: {
     address: string;
     description: string;
@@ -33,19 +35,19 @@
   <div class="overlay__outer">
     <div class="overlay__content">
       <section>
-        <div class="overlay__section-title">Engade unha vivenda</div>
+        <div class="overlay__section-title">Detalles da localización</div>
         <div class="overlay__section-text">
-          <div class="partial_div-numbered">
-            <span >D</span>Dirección: {house.address}
+          <div class="partial_div-not-numbered">
+            <span><FontAwesomeIcon class="icon " icon={ faLocationDot } size="lg" /></span><span>Dirección:</span> {house.address}
           </div>
-          <div class="partial_div-numbered">
-            <span >O</span>Observacións: {house.description}
+          <div class="partial_div-not-numbered">
+            <span><FontAwesomeIcon class="icon " icon={ faFileLines } size="lg" /></span><span>Licencia:</span> {house.license}
           </div>
-          <div class="partial_div-numbered">
-            <span >L</span>Licencia: {house.license}
+          <div class="partial_div-not-numbered">
+            <span><FontAwesomeIcon class="icon " icon={ faEye } size="lg" /></span><span>Observacións:</span> {house.description}
           </div>
-          <div class="partial_div-numbered">
-            <span >F</span>Fonte/s: {house.sources}
+          <div class="partial_div-not-numbered">
+            <span><FontAwesomeIcon class="icon " icon={ faCircleQuestion } size="lg" /></span><span>Fonte/s:</span> {house.sources}
           </div>
         </div>
       </section>

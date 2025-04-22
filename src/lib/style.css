@@ -32,7 +32,17 @@ body {
   padding-right: 1em;
 }
 
+.partial_div-not-numbered {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .partial_div-numbered p {
+  padding-left: 0em;
+  padding-right: 1em;
+}
+
+.partial_div-not-numbered p {
   padding-left: 0em;
   padding-right: 1em;
 }
@@ -65,7 +75,22 @@ body {
   margin-right: 10px;
 }
 
+.partial_div-not-numbered span {
+  min-width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
 .overlay__section-text .partial_div-numbered {
+  min-height: 39px;
+}
+
+.overlay__section-text .partial_div-not-numbered {
   min-height: 39px;
 }
 
@@ -200,6 +225,10 @@ textarea {
   }
 
   .partial_div-numbered {
+    padding-left: 0.5em;
+  }
+
+  .partial_div-not-numbered {
     padding-left: 0.5em;
   }
   .overlay--add,
