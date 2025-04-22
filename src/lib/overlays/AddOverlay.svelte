@@ -3,10 +3,10 @@
     addOverlayVisible,
     infoOverlayVisible,
     infoOverlayActiveTab
-  } from '../stores';
-  import ActionButton from './ActionButton.svelte';
-  import CloseButton from './CloseButton.svelte';
-  import { activeMarkerCoords } from '../stores';
+  } from '../../stores';
+  import ActionButton from '../buttons/ActionButton.svelte';
+  import CloseButton from '../buttons/CloseButton.svelte';
+  import { activeMarkerCoords } from '../../stores';
   import {
     turnstile,
     type TurnstileEventDetail

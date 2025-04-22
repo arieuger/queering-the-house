@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { infoOverlayVisible } from '../stores';
-  import CloseButton from './CloseButton.svelte';
+  import { infoOverlayVisible } from '../../stores';
+  import CloseButton from '../buttons/CloseButton.svelte';
 
   let root: HTMLDivElement;
   let active_tab = localStorage.getItem('active_tab')

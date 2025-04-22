@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import CloseButton from '$lib/CloseButton.svelte';
+  import CloseButton from '$lib/buttons/CloseButton.svelte';
   import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
   import { faLocationDot, faFileLines, faEye, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
   export let house: {

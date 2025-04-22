@@ -18,7 +18,7 @@
   import { activeMarkerCoords } from '../stores';
   import type { Feature, FeatureCollection, GeoJsonProperties, Point } from 'geojson';
   import * as martinez from 'martinez-polygon-clipping';
-  import HouseInfoOverlay from '$lib/HouseInfoOverlay.svelte';
+  import HouseInfoOverlay from '$lib/overlays/HouseInfoOverlay.svelte';
 
   const { Map, NavigationControl, Popup, GeolocateControl } = maplibregl;
   const style = styleJson as StyleSpecification;

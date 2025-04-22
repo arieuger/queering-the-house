@@ -1,12 +1,12 @@
 <script lang="ts">
   import logo from '$lib/assets/logo.png';
-  import InfoButton from './InfoButton.svelte';
-  import AddButton from './AddButton.svelte';
+  import InfoButton from './buttons/InfoButton.svelte';
+  import AddButton from './buttons/AddButton.svelte';
   import { infoOverlayVisible, addOverlayVisible } from '../stores';
-  import FilterButton from '$lib/FilterButton.svelte';
+  import FilterButton from '$lib/buttons/FilterButton.svelte';
   import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
   import { faBuilding, faCompass }        from '@fortawesome/free-solid-svg-icons';
-  import ToggleSwitch from '$lib/ToggleSwitch.svelte';
+  import ToggleSwitch from '$lib/buttons/ToggleSwitch.svelte';
   let onTouristPlaces = true;
 
 

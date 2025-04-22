@@ -2,8 +2,8 @@
   import '$lib/style.css';
   import '$lib/maplibre_style.css';
   import '$lib/navbar_buttons.css';
-  import AddOverlay from '$lib/AddOverlay.svelte';
-  import InfoOverlay from '$lib/InfoOverlay.svelte';
+  import AddOverlay from '$lib/overlays/AddOverlay.svelte';
+  import InfoOverlay from '$lib/overlays/InfoOverlay.svelte';
   import Map from '$lib/Map.svelte';
   import NavBar from '$lib/NavBar.svelte';
   import { addOverlayVisible, infoOverlayVisible } from '../stores';
